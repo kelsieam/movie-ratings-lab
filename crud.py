@@ -42,10 +42,27 @@ def all_the_movies():
     return all_movies
 
 
-def get_movie_by_id():
+def get_movie_by_id(movie_id):
     #### working on this
     selected_movie = Movie.query.filter(Movie.movie_id == movie_id).one()
     return selected_movie
+
+def get_user_by_id(user_id):
+    #### working on this
+    selected_user = User.query.filter(User.user_id == user_id).one()
+    return selected_user
+
+def all_the_users():
+    all_users = User.query.all()
+    return all_users
+
+def get_user_by_email(email):
+    user_email = User.query.filter(User.email == email)
+    return user_email
+
+def create_user(email, password):
+    user = User(email=email, password=password)
+    return user
 
 if __name__ == '__main__':
     from server import app
