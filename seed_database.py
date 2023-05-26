@@ -48,14 +48,19 @@ for n in range(10):
 
     # TODO: create a user here
     db_user = crud.create_user(email, password)
+    model.db.session.add(db_user)
     users_in_db.append(db_user)
     # TODO: create 10 ratings for the user
     
     num_ratings = 0
+    ratings_in_db = []
     while num_ratings <= 10:
         rating = randint(0,5)
         movie_to_review = choice(movies_in_db)
-        crud.create_rating(db_user, movie_to_review, rating)
+        rating_created = crud.create_rating(db_user, movie_to_review, rating)
+        ratings_in_db.append(rating_created)
         num_ratings += 1
+    model.db.session.add_all(ratings_in_db)
 
+model.db.session.commit()   
         

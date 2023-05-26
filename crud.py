@@ -37,7 +37,15 @@ def create_rating(user, movie, score):
 
 #     return rating
 
+def all_the_movies():
+    all_movies = Movie.query.all()
+    return all_movies
 
+
+def get_movie_by_id():
+    #### working on this
+    selected_movie = Movie.query.filter(Movie.movie_id == movie_id).one()
+    return selected_movie
 
 if __name__ == '__main__':
     from server import app
